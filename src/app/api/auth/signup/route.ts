@@ -7,7 +7,6 @@ import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 import { z } from "zod";
 
-// Validation schema using Zod for name, email, and password only
 const userSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
   email: z.string().email("Invalid email address"),
@@ -20,7 +19,6 @@ export async function POST(request: Request) {
 
     const body = await request.json();
 
-    // Validate the incoming data using Zod
     const result = userSchema.safeParse(body);
 
     if (!result.success) {
@@ -32,7 +30,6 @@ export async function POST(request: Request) {
 
     const { name, email, password } = result.data;
 
-    // Check if the email already exists
     const userFound = await User.findOne({ email });
 
     if (userFound) {
@@ -42,17 +39,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Create the new user
     const user = new User({
       name,
       email,
       password: hashedPassword,
     });
 
-    // Save the user in the database
     const savedUser = await user.save();
 
     return NextResponse.json(
@@ -76,4 +70,3 @@ export async function POST(request: Request) {
     }
   }
 }
-s

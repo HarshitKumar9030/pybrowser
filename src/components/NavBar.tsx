@@ -87,14 +87,12 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Mobile Slide-in Menu */}
       <div
         className={clsx(
           'fixed inset-0 z-40 flex flex-col items-center justify-start p-6 space-y-8 bg-gray-100 dark:bg-gray-900 transition-transform',
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
-        {/* Close Button */}
         <button
           onClick={toggleMenu}
           className="self-end mb-4 text-gray-800 dark:text-gray-200"
@@ -119,20 +117,7 @@ const Navbar = () => {
         ))}
 
         <ModeToggle />
-        {status === 'loading' ? (
-          <Loader className="w-5 h-5 text-blue-600 animate-spin mt-4" />
-        ) : session ? (
-          <UserMenu session={session} />
-        ) : (
-          <Link
-            href="/login"
-            className="flex items-center px-4 py-2 mt-4 text-lg font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
-            onClick={toggleMenu}
-          >
-            <LogIn className="w-5 h-5 mr-2" />
-            Login
-          </Link>
-        )}
+     
       </div>
     </nav>
   );
