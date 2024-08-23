@@ -2,32 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --input-bg: #f1f1f1;
+    --input-text: #333;
+    --input-border: #ccc;
+    --button-bg: #e1e1e1;
+    --dropdown-bg: #fff;
+    --dropdown-text: #000;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  
+  [data-theme='dark'] {
+    --input-bg: #2D2D2D;
+    --input-text: #FFF;
+    --input-border: #555;
+    --button-bg: #3B3B3B;
+    --dropdown-bg: #333;
+    --dropdown-text: #FFF;
   }
 }
